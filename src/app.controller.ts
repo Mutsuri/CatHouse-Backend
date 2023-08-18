@@ -18,11 +18,11 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  @Post('data')
-  async signupUser(
-    @Body() userData: { name?: string; email: string; birthYear?: number}
-  ): Promise<UserModel> {
-    return this.appService.createUser(userData);
-  }
+  // @Post('data')
+  // async signupUser(
+  //   @Body() userData: { name?: string; email: string; birthYear?: number}
+  // ): Promise<UserModel> {
+  //   return this.appService.createUser(userData);
+  // }
 }
 
