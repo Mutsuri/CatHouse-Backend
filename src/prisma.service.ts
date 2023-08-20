@@ -1,5 +1,4 @@
 import {
-  INestApplication,
   Injectable,
   OnModuleInit,
   OnApplicationShutdown,
@@ -16,6 +15,7 @@ export class PrismaService
   }
 
   async onApplicationShutdown(signal?: string) {
+    console.log('signal', signal);
     await this.$disconnect();
   }
 }
