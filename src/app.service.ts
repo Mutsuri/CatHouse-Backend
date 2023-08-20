@@ -7,12 +7,10 @@ export class AppService {
   getHello(): any {
     return 'You Come To Backend!';
   }
-  constructor(private prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) {}
 
-  async createUser(userData): Promise<User>  
-  {    
-      const result = await this.prisma.user.create({data:      
-      userData});
-      return result;
+  async createUser(userData): Promise<User> {
+    const result = await this.prisma.user.create({ data: userData });
+    return result;
   }
 }
