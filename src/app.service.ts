@@ -13,4 +13,15 @@ export class AppService {
     const result = await this.prisma.user.create({ data: userData });
     return result;
   }
+  
+  googleLogin(req) {
+    if (!req.user) {
+      return 'No user from google'
+    }
+
+    return {
+      message: 'User information from google',
+      user: req.user
+    }
+  }
 }
