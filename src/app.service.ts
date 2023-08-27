@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from './prisma.service';
+import { PrismaService } from './prisma/prisma.service';
 import { User } from '@prisma/client';
 
 @Injectable()
@@ -16,12 +16,12 @@ export class AppService {
   
   googleLogin(req) {
     if (!req.user) {
-      return 'No user from google'
+      return 'No user from google';
     }
 
     return {
       message: 'User information from google',
-      user: req.user
-    }
+      user: req.user,
+    };
   }
 }

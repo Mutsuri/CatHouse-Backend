@@ -1,7 +1,8 @@
-import { Controller, Post, Body, Get, Req, UseGuards } from '@nestjs/common';
+import { Controller, Post, Body, Get, Req, UseGuards, Request } from '@nestjs/common';
 import { AppService } from './app.service';
 import { User as UserModel } from '@prisma/client';
 import { AuthGuard } from '@nestjs/passport';
+import { GoogleOAuthGuard } from './google-oauth.guard';
 
 @Controller()
 export class AppController {
@@ -20,17 +21,17 @@ export class AppController {
   }
 }
 
-@Controller('google')
-export class AppController1 {
+@Controller('auth')
+export class AuthController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  @UseGuards(AuthGuard('google'))
-  async googleAuth(@Req() req) {}
+  @UseGuards(GoogleOAuthGuard)
+  async googleAuth(@Request() req) {}
 
-  @Get('redirect')
-  @UseGuards(AuthGuard('google'))
-  googleAuthRedirect(@Req() req) {
-    return this.appService.googleLogin(req)
+  @Get('google-redirect')
+  @UseGuards(GoogleOAuthGuard)
+  googleAuthRedirect(@Request() req) {
+    return this.appService.googleLogin(req);
   }
 }
